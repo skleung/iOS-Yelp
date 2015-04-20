@@ -1,0 +1,50 @@
+PODS:
+  - AFNetworking (2.5.2):
+    - AFNetworking/NSURLConnection (= 2.5.2)
+    - AFNetworking/NSURLSession (= 2.5.2)
+    - AFNetworking/Reachability (= 2.5.2)
+    - AFNetworking/Security (= 2.5.2)
+    - AFNetworking/Serialization (= 2.5.2)
+    - AFNetworking/UIKit (= 2.5.2)
+  - AFNetworking/NSURLConnection (2.5.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.2):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.2)
+  - AFNetworking/Security (2.5.2)
+  - AFNetworking/Serialization (2.5.2)
+  - AFNetworking/UIKit (2.5.2):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BDBOAuth1Manager (1.5.0):
+    - AFNetworking/NSURLConnection (~> 2.5.0)
+    - AFNetworking/NSURLSession (~> 2.5.0)
+  - MBProgressHUD (0.9.1)
+  - THSegmentedControl (0.1.7)
+
+DEPENDENCIES:
+  - AFNetworking
+  - BDBOAuth1Manager
+  - MBProgressHUD
+  - THSegmentedControl (from `https://github.com/tayhalla/THSegmentedControl.git`)
+
+EXTERNAL SOURCES:
+  THSegmentedControl:
+    :git: https://github.com/tayhalla/THSegmentedControl.git
+
+CHECKOUT OPTIONS:
+  THSegmentedControl:
+    :commit: bccfb466ac0c6d3f7db298f28f6dcfecd0f1e6f8
+    :git: https://github.com/tayhalla/THSegmentedControl.git
+
+SPEC CHECKSUMS:
+  AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
+  BDBOAuth1Manager: 2e28773b58f880fb36b5cd3efcf0b1fefbc78a99
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  THSegmentedControl: 86eda021e9c7fd9408cbc08c6ad02eb24cca5b18
+
+COCOAPODS: 0.36.3
