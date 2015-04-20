@@ -8,11 +8,14 @@
 
 import UIKit
 
-class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITableViewDataSource {
+class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
     var client: YelpClient!
     var refreshControl: UIRefreshControl!
-  
+    var searchActive : Bool = false
+    var useFilters : Bool = false
+    var filters = [String:Bool]()
+    var radius_filter : Double = 0.3
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
     let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
     let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
@@ -55,20 +58,69 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
       
       tableView.dataSource = self
       tableView.delegate = self
+      searchBar.delegate = self
     }
   
   func onRefresh() {
+    search("Chinese")
+  }
+  
+  func search(query: String) {
     client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
-    
-    client.searchWithTerm("Thai", success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
-      self.results = response["businesses"] as! [NSDictionary]
-      self.tableView.reloadData()
-      MBProgressHUD.hideHUDForView(self.view, animated: true)
-      }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
-        self.errorView.hidden = false
-        self.errorText.text = "\(error)"
+    if (useFilters) {
+      // implement sort (best match, distance, highest rated), radius (meters), deals (on/off).
+      var sortMode = 0
+      if (filters.indexForKey("Distance") != nil && filters["Distance"]!) {
+        sortMode = 1
+      }
+      if (filters.indexForKey("Highest Rated") != nil && filters["Highest Rated"]!) {
+        sortMode = 2
+      }
+      
+      var dealsFlag = false
+      if (filters.indexForKey("Offering a Deal") != nil && filters["Offering a Deal"]!) {
+        dealsFlag = true
+      }
+      client.advancedSearch(query, sortMode: sortMode, radius: radius_filter, dealsFlag: dealsFlag, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        self.results = response["businesses"] as! [NSDictionary]
+        self.tableView.reloadData()
         MBProgressHUD.hideHUDForView(self.view, animated: true)
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+          self.errorView.hidden = false
+          self.errorText.text = "\(error)"
+          MBProgressHUD.hideHUDForView(self.view, animated: true)
+      }
+      
+    } else {
+      client.searchWithTerm(query, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
+        self.results = response["businesses"] as! [NSDictionary]
+        self.tableView.reloadData()
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+        }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
+          self.errorView.hidden = false
+          self.errorText.text = "\(error)"
+          MBProgressHUD.hideHUDForView(self.view, animated: true)
+      }
     }
+  }
+  
+  func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    searchActive = true;
+  }
+  
+  func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    searchActive = false;
+  }
+  
+  func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    searchActive = false
+    searchBar.resignFirstResponder()
+  }
+  
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    searchActive = false;
+    search(searchBar.text)
+    searchBar.resignFirstResponder()
   }
 
     override func didReceiveMemoryWarning() {
@@ -76,9 +128,13 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
         // Dispose of any resources that can be recreated.
     }
   
-    func filterViewController(filtersViewControllers: filterView, didUpdateFilters filters:[String:Bool], possiblePrices: [String]) {
+  func filterViewController(filtersViewControllers: filterView, didUpdateFilters filters:[String:Bool], radiusFilter: Double) {
       // run the search with the new filters
-      NSLog("received: \(filters)")
+      self.filters = filters
+      self.radius_filter = radiusFilter
+      useFilters = true
+      println(radiusFilter)
+      search(searchBar.text)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

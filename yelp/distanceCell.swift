@@ -9,11 +9,14 @@
 import UIKit
 
 protocol DistanceCellDelegate {
-  func setDistance(cell: distanceCell, distance: CGFloat)
+  func setDistance(cell: distanceCell)
 }
 
 class distanceCell: UITableViewCell {
   var delegate: DistanceCellDelegate?
   
   @IBOutlet var distanceControl: UISegmentedControl!
+  @IBAction func distanceChanged(sender: UISegmentedControl) {
+    delegate?.setDistance(self)
+  }
 }

@@ -31,13 +31,22 @@ class RestaurantCell: UITableViewCell {
   }
   
   func setDetails(details: NSDictionary) {
+    println("DETAILS!!!")
+    println(details)
     nameLabel.text = details["name"] as! String
     var url = NSURL(string: details["image_url"] as! String)
     photoView.setImageWithURL(url!)
-    var addressArray = details.valueForKeyPath("location.address") as! [String]
+    var addressArray = details.valueForKeyPath("location.display_address") as! [String]
     var address = addressArray[0]
     address = address + ", " + (details.valueForKeyPath("location.city") as! String)
     addressLabel.text = address
+    
+    var categoriesArray = details["categories"] as! [[String]]
+    var categoryString = ""
+    for arr in categoriesArray {
+      categoryString += arr[0] + ", "
+    }
+    categoryLabel.text = categoryString.substringToIndex(advance(categoryString.endIndex, -2))
     var rating_url = details["rating_img_url"] as! String
     ratingImage.setImageWithURL(NSURL(string: rating_url)!)
     reviewsLabel.text = NSString(format: "%ld Reviews", details["review_count"] as! Int) as! String

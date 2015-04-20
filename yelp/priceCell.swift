@@ -9,10 +9,13 @@
 import UIKit
 
 protocol PriceCellDelegate {
-  func setPrices(priceCell: priceCell, possiblePrices: [String])
+  func setPrices(priceCell: priceCell, price: String)
 }
 class priceCell: UITableViewCell {
   var delegate : PriceCellDelegate?
-  @IBOutlet var priceControl: THSegmentedControl!
+  @IBOutlet var priceControl: UISegmentedControl!
   
+  @IBAction func priceChanged(sender: AnyObject) {
+    delegate?.setPrices(self, price: self.priceControl.titleForSegmentAtIndex(priceControl.selectedSegmentIndex)!)
+  }
 }

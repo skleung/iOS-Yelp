@@ -9,19 +9,23 @@
 import UIKit
 
 protocol FiltersViewDelegate {
-  func filterViewController(filtersViewControllers: filterView, didUpdateFilters filters:[String:Bool], possiblePrices: [String]);
+  func filterViewController(filtersViewControllers: filterView, didUpdateFilters filters:[String:Bool], radiusFilter: Double);
 }
 
-class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, PriceCellDelegate  {
+class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, SwitchCellDelegate, PriceCellDelegate, DistanceCellDelegate  {
 
   @IBOutlet var tableView: UITableView!
   var prices = [String]()
   var delegate: FiltersViewDelegate?
-  var headerTitles = ["Price", "Most Popular", "Distance", "Sort by"]
+  var headerTitles = ["Price", "Most Popular", "Distance", "Sort by", "General Features"]
   var mostPopularTitles = ["Open Now", "Delivery", "Offering a Deal", "Hot and New"]
   var mostPopularStates = [String:Bool]()
+  var sortByTitles = ["Best Match", "Distance", "Highest Rated"]
   var generalFeatureTitles = ["Online Reservations", "Order Pickup or Delivery", "Online Booking", "Good For Groups", "Takes Reservations"]
+  var sortByStates = [String: Bool]()
   var generalFeatureStates = [String: Bool]()
+  var possibleDistances = [0.3, 1, 5, 20]
+  var distance : Double!
   
   
     override func viewDidLoad() {
@@ -49,15 +53,25 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     for (key, value) in generalFeatureStates {
       cellState[key] = value
     }
-    delegate?.filterViewController(self, didUpdateFilters: cellState, possiblePrices: prices)
+    for (key, value) in sortByStates {
+      cellState[key] = value
+    }
+    println(distance)
+    delegate?.filterViewController(self, didUpdateFilters: cellState, radiusFilter: distance)
     dismissViewControllerAnimated(true, completion: nil)
+  }
+  
+  func setDistance(cell: distanceCell) {
+    println("call me!")
+    distance = possibleDistances[cell.distanceControl.selectedSegmentIndex]
+    println(distance)
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     if (section == 0 || section == 2) { return 1 }
     if (section == 1) {return self.mostPopularTitles.count }
-    if (section == 3) {return self.generalFeatureTitles.count }
-    return 4
+    if (section == 3) {return self.sortByTitles.count }
+    return self.generalFeatureTitles.count
   }
   func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return 65
@@ -77,17 +91,25 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     if (indexPath.section == 2) {
       let cell = tableView.dequeueReusableCellWithIdentifier("distanceCell", forIndexPath: indexPath) as! distanceCell
       // sets the delegate so that the cell knows who to send the function response to
+      cell.delegate = self
       return cell
     }
     if (indexPath.section == 3) {
       let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
       // sets the delegate so that the cell knows who to send the function response to
-      cell.labelView.text = generalFeatureTitles[indexPath.row]
-      setUpGeneralSwitchCell(cell, row: indexPath.row)
+      cell.labelView.text = sortByTitles[indexPath.row]
+      setUpSortSwitchCell(cell, row: indexPath.row)
       return cell
     }
-    let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
-    return cell
+    if (indexPath.section == 4) {
+      let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
+      // sets the delegate so that the cell knows who to send the function response to
+        cell.labelView.text = generalFeatureTitles[indexPath.row]
+        setUpGeneralCell(cell, row: indexPath.row)
+        return cell
+      }
+      let cell = tableView.dequeueReusableCellWithIdentifier("SwitchCell", forIndexPath: indexPath) as! SwitchCell
+      return cell
   }
   
   func setUpSwitchCell(cell: SwitchCell, row: Int) {
@@ -100,8 +122,7 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
       mostPopularStates[mostPopularTitles[row]] = true
     }
   }
-  
-  func setUpGeneralSwitchCell(cell: SwitchCell, row: Int) {
+  func setUpGeneralCell(cell: SwitchCell, row: Int) {
     cell.delegate = self
     let switchState = generalFeatureStates[generalFeatureTitles[row]]
     if let state = switchState {
@@ -112,10 +133,23 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
   }
   
+  func setUpSortSwitchCell(cell: SwitchCell, row: Int) {
+    cell.delegate = self
+    let switchState = sortByStates[sortByTitles[row]]
+    if let state = switchState {
+      cell.settingsSwitch.on = state
+    } else {
+      cell.settingsSwitch.on = false
+      sortByStates[sortByTitles[row]] = false
+    }
+  }
+  
   func switchCell(switchCell: SwitchCell, didChangeValue value: Bool) {
     let indexPath = tableView.indexPathForCell(switchCell)
     if (indexPath!.section == 1) {
       mostPopularStates[mostPopularTitles[indexPath!.row]] = value
+    } else if (indexPath!.section == 3) {
+      sortByStates[sortByTitles[indexPath!.row]] = value
     } else {
       generalFeatureStates[generalFeatureTitles[indexPath!.row]] = value
     }
@@ -127,18 +161,19 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
   }
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-    return 4
+    return 5
   }
   
   func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
     return headerTitles[section]
   }
   
-  func setPrices(cell: priceCell, possiblePrices: [String]) {
-    var selectedIndicies = cell.priceControl.selectedIndexes()
-    for i in selectedIndicies {
-      prices.append(cell.priceControl!.titleForSegmentAtIndex(i as! Int))
-    }
+  func setPrices(cell: priceCell, price: String) {
+      prices.append(price)
+//    var selectedIndicies = cell.priceControl.selectedIndexes()
+//    for i in selectedIndicies {
+//      prices.append(cell.priceControl!.titleForSegmentAtIndex(i as! Int))
+//    }
     
   }
   
