@@ -15,7 +15,8 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
     var searchActive : Bool = false
     var useFilters : Bool = false
     var filters = [String:Bool]()
-    var radius_filter : Double = 0.3
+    var searchWord : String! = "Thai"
+    var radius_filter : Double = 100
     // You can register for Yelp API keys here: http://www.yelp.com/developers/manage_api_keys
     let yelpConsumerKey = "vxKwwcR_NMQ7WaEiQBK_CA"
     let yelpConsumerSecret = "33QCvh5bIF5jIHR5klQr7RtBDhQ"
@@ -32,6 +33,10 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
     var searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width as! CGFloat, height: 30))
     override func viewDidLoad() {
       super.viewDidLoad()
+      tableView.rowHeight = UITableViewAutomaticDimension
+      
+      //get location
+
       // set navigation view color text
       self.navigationItem.titleView = searchBar
       var nav = navigationController
@@ -51,7 +56,6 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
       refreshControl = UIRefreshControl()
       refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
       tableView.insertSubview(refreshControl, atIndex: 0)
-      tableView.rowHeight = UITableViewAutomaticDimension
       // adds HUD
       MBProgressHUD.showHUDAddedTo(self.view, animated: true)
 
@@ -62,7 +66,7 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
     }
   
   func onRefresh() {
-    search("Chinese")
+    search("Thai")
   }
   
   func search(query: String) {
@@ -83,6 +87,7 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
       }
       client.advancedSearch(query, sortMode: sortMode, radius: radius_filter, dealsFlag: dealsFlag, success: { (operation: AFHTTPRequestOperation!, response: AnyObject!) -> Void in
         self.results = response["businesses"] as! [NSDictionary]
+        println(self.results)
         self.tableView.reloadData()
         MBProgressHUD.hideHUDForView(self.view, animated: true)
         }) { (operation: AFHTTPRequestOperation!, error: NSError!) -> Void in
@@ -119,8 +124,13 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     searchActive = false;
-    search(searchBar.text)
+    searchWord = searchBar.text
+    search(searchWord)
     searchBar.resignFirstResponder()
+  }
+  func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    searchWord = searchText
+    search(searchWord)
   }
 
     override func didReceiveMemoryWarning() {
@@ -134,7 +144,7 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
       self.radius_filter = radiusFilter
       useFilters = true
       println(radiusFilter)
-      search(searchBar.text)
+      search(searchWord)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

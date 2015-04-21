@@ -25,7 +25,7 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
   var sortByStates = [String: Bool]()
   var generalFeatureStates = [String: Bool]()
   var possibleDistances = [0.3, 1, 5, 20]
-  var distance : Double!
+  var distance : Double! = 5.0
   
   
     override func viewDidLoad() {
@@ -118,8 +118,8 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     if let state = switchState {
       cell.settingsSwitch.on = state
     } else {
-      cell.settingsSwitch.on = true
-      mostPopularStates[mostPopularTitles[row]] = true
+      cell.settingsSwitch.on = false
+      mostPopularStates[mostPopularTitles[row]] = false
     }
   }
   func setUpGeneralCell(cell: SwitchCell, row: Int) {
@@ -128,8 +128,8 @@ class filterView: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     if let state = switchState {
       cell.settingsSwitch.on = state
     } else {
-      cell.settingsSwitch.on = true
-      generalFeatureStates[generalFeatureTitles[row]] = true
+      cell.settingsSwitch.on = false
+      generalFeatureStates[generalFeatureTitles[row]] = false
     }
   }
   

@@ -31,10 +31,12 @@ class RestaurantCell: UITableViewCell {
   }
   
   func setDetails(details: NSDictionary) {
-    println("DETAILS!!!")
-    println(details)
     nameLabel.text = details["name"] as! String
-    var url = NSURL(string: details["image_url"] as! String)
+    
+    var url = NSURL(string: "http://osx.wdfiles.com/local--files/icon:yelplogo/YelpLogo.png")
+    if (details.objectForKey("image_url") != nil) {
+      url = NSURL(string: details["image_url"] as! String)
+    }
     photoView.setImageWithURL(url!)
     var addressArray = details.valueForKeyPath("location.display_address") as! [String]
     var address = addressArray[0]
