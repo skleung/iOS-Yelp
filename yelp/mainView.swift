@@ -69,6 +69,10 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
     search("Thai")
   }
   
+  func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return 90
+  }
+  
   func search(query: String) {
     client = YelpClient(consumerKey: yelpConsumerKey, consumerSecret: yelpConsumerSecret, accessToken: yelpToken, accessSecret: yelpTokenSecret)
     if (useFilters) {
