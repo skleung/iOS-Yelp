@@ -70,7 +70,7 @@ class mainView: UIViewController, FiltersViewDelegate, UITableViewDelegate, UITa
   }
   
   func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    return 90
+    return 113
   }
   
   func search(query: String) {

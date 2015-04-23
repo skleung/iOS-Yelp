@@ -26,70 +26,73 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QlT-c0-usv" id="mOw-G6-0FK">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uuo-Pw-grE">
-                                                    <rect key="frame" x="8" y="8" width="82" height="80"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uuo-Pw-grE">
+                                                    <rect key="frame" x="8" y="8" width="80" height="80"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="Fk4-dF-jUR"/>
-                                                        <constraint firstAttribute="width" constant="80" id="rpU-y7-g4X"/>
+                                                        <constraint firstAttribute="height" constant="80" id="kId-8F-FlD"/>
+                                                        <constraint firstAttribute="width" constant="80" id="pnw-Kc-AvV"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Ike's Sandwiches" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itn-ZM-Jfz">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ike's Sandwiches" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itn-ZM-Jfz">
                                                     <rect key="frame" x="96" y="8" width="171" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="171" id="e91-Fx-nsy"/>
-                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0.07 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdm-Qw-wuH">
-                                                    <rect key="frame" x="270" y="7" width="45" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0.07 mi." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hdm-Qw-wuH">
+                                                    <rect key="frame" x="270" y="7" width="45" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="highlightedColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SlJ-Jk-ser">
-                                                    <rect key="frame" x="96" y="31" width="128" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 Mission Street, San Francisco, CA" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfT-cb-xie">
+                                                    <rect key="frame" x="96" y="58" width="208" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="128" id="08b-Ph-1wI"/>
-                                                        <constraint firstAttribute="height" constant="21" id="r2K-J5-gNM"/>
+                                                        <constraint firstAttribute="width" constant="208" id="wxp-42-54g"/>
                                                     </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sandwiches, category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-Fv-bjF">
-                                                    <rect key="frame" x="96" y="75" width="124" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="273 Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-2F-caK">
-                                                    <rect key="frame" x="233" y="32" width="60" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="60 Mission Street, San Francisco, CA" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfT-cb-xie">
-                                                    <rect key="frame" x="98" y="51" width="224" height="25"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SlJ-Jk-ser">
+                                                    <rect key="frame" x="96" y="32" width="128" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="EVs-FZ-n4A"/>
+                                                        <constraint firstAttribute="width" constant="128" id="nmt-Cl-UeA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sandwiches, category" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zn-Fv-bjF">
+                                                    <rect key="frame" x="96" y="73" width="124" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="273 Reviews" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-2F-caK">
+                                                    <rect key="frame" x="232" y="37" width="60" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Uuo-Pw-grE" firstAttribute="leading" secondItem="mOw-G6-0FK" secondAttribute="leading" constant="8" id="78b-Ln-k2h"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hdm-Qw-wuH" secondAttribute="trailing" constant="5" id="8ZS-rQ-Plw"/>
-                                                <constraint firstItem="mfT-cb-xie" firstAttribute="top" secondItem="itn-ZM-Jfz" secondAttribute="bottom" constant="22" id="9P8-pb-Xye"/>
-                                                <constraint firstAttribute="bottom" secondItem="0zn-Fv-bjF" secondAttribute="bottom" constant="7" id="E5B-sB-hbY"/>
-                                                <constraint firstItem="0zn-Fv-bjF" firstAttribute="top" secondItem="TYh-2F-caK" secondAttribute="bottom" constant="17" id="RKh-oq-1ev"/>
-                                                <constraint firstItem="SlJ-Jk-ser" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="Vdb-Bh-rj8"/>
-                                                <constraint firstItem="itn-ZM-Jfz" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="8" id="WzA-R4-pIh"/>
-                                                <constraint firstItem="Uuo-Pw-grE" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="8" id="XXV-k0-nNx"/>
-                                                <constraint firstItem="0zn-Fv-bjF" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="a05-gc-KEr"/>
-                                                <constraint firstItem="itn-ZM-Jfz" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="fYy-sS-GBD"/>
-                                                <constraint firstItem="SlJ-Jk-ser" firstAttribute="centerY" secondItem="TYh-2F-caK" secondAttribute="centerY" id="ktc-x1-qmF"/>
-                                                <constraint firstItem="TYh-2F-caK" firstAttribute="leading" secondItem="SlJ-Jk-ser" secondAttribute="trailing" constant="7" id="mbH-g3-8wS"/>
-                                                <constraint firstItem="mfT-cb-xie" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="vdL-xK-niO"/>
-                                                <constraint firstItem="Hdm-Qw-wuH" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="7" id="ywq-bp-sGj"/>
-                                                <constraint firstItem="SlJ-Jk-ser" firstAttribute="top" secondItem="itn-ZM-Jfz" secondAttribute="bottom" constant="3" id="yyQ-F1-ryg"/>
+                                                <constraint firstItem="itn-ZM-Jfz" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="8" id="0jx-o9-AgL"/>
+                                                <constraint firstItem="0zn-Fv-bjF" firstAttribute="top" secondItem="mfT-cb-xie" secondAttribute="bottom" id="5rY-G5-xin"/>
+                                                <constraint firstItem="itn-ZM-Jfz" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="8QT-AC-OLO"/>
+                                                <constraint firstItem="TYh-2F-caK" firstAttribute="leading" secondItem="SlJ-Jk-ser" secondAttribute="trailing" constant="8" id="ABN-fA-aas"/>
+                                                <constraint firstItem="Uuo-Pw-grE" firstAttribute="leading" secondItem="mOw-G6-0FK" secondAttribute="leading" constant="8" id="Fxh-a2-aBc"/>
+                                                <constraint firstItem="0zn-Fv-bjF" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="MsP-7j-K8C"/>
+                                                <constraint firstAttribute="bottom" secondItem="0zn-Fv-bjF" secondAttribute="bottom" constant="24" id="NKR-bo-spb"/>
+                                                <constraint firstItem="mfT-cb-xie" firstAttribute="top" secondItem="SlJ-Jk-ser" secondAttribute="bottom" constant="5" id="PvD-r9-GXk"/>
+                                                <constraint firstItem="Hdm-Qw-wuH" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="7" id="T4l-D8-OE5"/>
+                                                <constraint firstItem="SlJ-Jk-ser" firstAttribute="top" secondItem="itn-ZM-Jfz" secondAttribute="bottom" constant="3" id="Uw5-i8-isG"/>
+                                                <constraint firstItem="Uuo-Pw-grE" firstAttribute="top" secondItem="mOw-G6-0FK" secondAttribute="top" constant="8" id="XDM-Et-kNI"/>
+                                                <constraint firstAttribute="trailing" secondItem="TYh-2F-caK" secondAttribute="trailing" constant="28" id="bcq-xs-XLt"/>
+                                                <constraint firstItem="mfT-cb-xie" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="cTt-EV-GCo"/>
+                                                <constraint firstAttribute="trailing" secondItem="Hdm-Qw-wuH" secondAttribute="trailing" constant="5" id="hoS-5v-e1C"/>
+                                                <constraint firstItem="Hdm-Qw-wuH" firstAttribute="leading" secondItem="itn-ZM-Jfz" secondAttribute="trailing" constant="3" id="jN1-OF-UpM"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Uuo-Pw-grE" secondAttribute="bottom" constant="24" id="mEh-cB-I5E"/>
+                                                <constraint firstItem="SlJ-Jk-ser" firstAttribute="leading" secondItem="Uuo-Pw-grE" secondAttribute="trailing" constant="8" id="otJ-H5-c2w"/>
+                                                <constraint firstItem="TYh-2F-caK" firstAttribute="top" secondItem="itn-ZM-Jfz" secondAttribute="bottom" constant="8" id="ulL-B4-iPA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

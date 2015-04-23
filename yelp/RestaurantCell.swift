@@ -22,6 +22,7 @@ class RestaurantCell: UITableViewCell {
     super.awakeFromNib()
     // Initialization code
     nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+    addressLabel.preferredMaxLayoutWidth = addressLabel.frame.size.width
   }
   
   override func setSelected(selected: Bool, animated: Bool) {
@@ -56,6 +57,8 @@ class RestaurantCell: UITableViewCell {
   }
   
   override func layoutSubviews() {
+    super.layoutSubviews()
     nameLabel.preferredMaxLayoutWidth = nameLabel.frame.size.width
+    addressLabel.preferredMaxLayoutWidth = addressLabel.frame.size.width
   }
 }
